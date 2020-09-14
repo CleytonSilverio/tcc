@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.edu.tcc.entidade.Aula;
 
 @Repository
-public interface AulaRepositorio extends JpaRepository<Long, Aula>{
+public interface AulaRepositorio extends JpaRepository<Aula, Long>{
 	
 }

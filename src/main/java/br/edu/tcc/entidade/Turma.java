@@ -7,7 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "turma")
 public class Turma {
@@ -18,10 +22,12 @@ public class Turma {
 	private String sala;
 	private int periodo;
 
-	@OneToMany(mappedBy = "curso", cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@ManyToOne
+	@JoinColumn(name = "id_curso")
+	@JsonIgnore
 	private Curso curso;
 
-	@OneToMany(mappedBy = "aluno", cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@OneToMany(mappedBy = "alunos", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<Aluno> alunos;
 
 	public Long getId() {

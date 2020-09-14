@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.edu.tcc.entidade.Chamada;
 
 @Repository
-public interface ChamadaRepositorio extends JpaRepository<Long, Chamada>{
+public interface ChamadaRepositorio extends JpaRepository<Chamada, Long>{
 
 }

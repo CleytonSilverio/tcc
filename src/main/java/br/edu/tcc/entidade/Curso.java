@@ -2,6 +2,7 @@ package br.edu.tcc.entidade;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -24,9 +26,7 @@ public class Curso {
 	@NotBlank(message = "Nome do curso é obrigatório.")
 	private String curso_nome;
 
-	@ManyToOne
-	@JoinColumn(name = "turma_id")
-	@JsonIgnore
+	@OneToMany(mappedBy = "turma", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<Turma> turmas;
 
 	@ManyToOne

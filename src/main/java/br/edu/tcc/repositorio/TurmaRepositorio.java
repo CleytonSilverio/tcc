@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.edu.tcc.entidade.Turma;
 
-public interface TurmaRepositorio extends JpaRepository<Long, Turma> {
+public interface TurmaRepositorio extends JpaRepository<Turma, Long> {
 
 }

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.edu.tcc.entidade.Calendario;
 
 @Repository
-public interface CalendarioRepositorio extends JpaRepository<Integer, Calendario>{
+public interface CalendarioRepositorio extends JpaRepository<Calendario, Integer>{
 
 }
