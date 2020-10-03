@@ -15,7 +15,7 @@ import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity(name="curso")
+@Entity(name = "curso")
 public class Curso {
 
 	@Id
@@ -26,13 +26,18 @@ public class Curso {
 	@NotBlank(message = "Nome do curso é obrigatório.")
 	private String curso_nome;
 
-	@OneToMany(mappedBy = "turma", cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@OneToMany(mappedBy = "curso", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<Turma> turmas;
 
 	@ManyToOne
 	@JoinColumn(name = "aluno_id")
 	@JsonIgnore
 	private Aluno alunos;
+
+	@ManyToOne
+	@JoinColumn(name = "aula_id")
+	@JsonIgnore
+	private Aula aula;
 
 	public int getId() {
 		return id;
@@ -64,6 +69,14 @@ public class Curso {
 
 	public void setAlunos(Aluno alunos) {
 		this.alunos = alunos;
+	}
+
+	public Aula getAula() {
+		return aula;
+	}
+
+	public void setAula(Aula aula) {
+		this.aula = aula;
 	}
 
 }

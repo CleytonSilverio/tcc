@@ -16,7 +16,6 @@ public class ChamadaDto {
 	public ChamadaDto(Chamada chamada) {
 		super();
 		this.idChamada = chamada.getIdChamada();
-		this.aluno = chamada.getAluno();
 		this.aula = getAula();
 	}
 

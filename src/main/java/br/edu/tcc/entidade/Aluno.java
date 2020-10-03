@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -23,9 +22,6 @@ public class Aluno {
 	@NotBlank(message = "Nome do aluno é obrigatório.")
 	private String nome;
 
-	@Transient
-	private int flag;
-
 	private boolean presente;
 
 	@ManyToOne
@@ -37,6 +33,11 @@ public class Aluno {
 	@JoinColumn(name = "turma_id")
 	@JsonIgnore
 	private Turma turmas;
+
+	@ManyToOne
+	@JoinColumn(name = "id_chamada")
+	@JsonIgnore
+	private Chamada chamada;
 
 	@ManyToOne
 	@JoinColumn(name = "id_aula")
@@ -57,14 +58,6 @@ public class Aluno {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public int getFlag() {
-		return flag;
-	}
-
-	public void setFlag(int flag) {
-		this.flag = flag;
 	}
 
 	public Curso getCursos() {
@@ -97,6 +90,14 @@ public class Aluno {
 
 	public void setAula(Aula aula) {
 		this.aula = aula;
+	}
+
+	public Chamada getChamada() {
+		return chamada;
+	}
+
+	public void setChamada(Chamada chamada) {
+		this.chamada = chamada;
 	}
 
 }

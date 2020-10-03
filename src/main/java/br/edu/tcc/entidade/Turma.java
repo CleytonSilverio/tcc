@@ -1,7 +1,5 @@
 package br.edu.tcc.entidade;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,8 +25,8 @@ public class Turma {
 	@JsonIgnore
 	private Curso curso;
 
-	@OneToMany(mappedBy = "alunos", cascade = CascadeType.REMOVE, orphanRemoval = true)
-	private List<Aluno> alunos;
+	@OneToMany(mappedBy = "turma", cascade = CascadeType.REMOVE, orphanRemoval = true)
+	private Aluno alunos;
 
 	public Long getId() {
 		return id;
@@ -54,11 +52,11 @@ public class Turma {
 		this.curso = curso;
 	}
 
-	public List<Aluno> getAlunos() {
+	public Aluno getAlunos() {
 		return alunos;
 	}
 
-	public void setAlunos(List<Aluno> alunos) {
+	public void setAlunos(Aluno alunos) {
 		this.alunos = alunos;
 	}
 

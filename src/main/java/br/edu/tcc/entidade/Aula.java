@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -20,11 +21,16 @@ public class Aula {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idAula;
 
-	@OneToMany(mappedBy = "aluno", cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@OneToMany(mappedBy = "aula", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<Aluno> aluno;
 
-	@OneToMany(mappedBy = "curso", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "aula", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<Curso> cursos;
+
+	@OneToOne
+	@JoinColumn(name = "id_chamada")
+	@JsonIgnore
+	private Chamada chamada;
 
 	@ManyToOne
 	@JoinColumn(name = "id_calendario")
@@ -61,6 +67,14 @@ public class Aula {
 
 	public void setCalendario(Calendario calendario) {
 		this.calendario = calendario;
+	}
+
+	public Chamada getChamada() {
+		return chamada;
+	}
+
+	public void setChamada(Chamada chamada) {
+		this.chamada = chamada;
 	}
 
 }
